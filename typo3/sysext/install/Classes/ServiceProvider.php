@@ -256,7 +256,6 @@ class ServiceProvider extends AbstractServiceProvider
         return new Middleware\Maintenance(
             $container->get(FailsafePackageManager::class),
             $container->get(ConfigurationManager::class),
-            $container->get(PasswordHashFactory::class),
             $container,
             $container->get(FormProtectionFactory::class),
             $container->get(SessionService::class),
