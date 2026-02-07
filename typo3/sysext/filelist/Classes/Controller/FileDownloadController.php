@@ -134,6 +134,11 @@ class FileDownloadController
             if ($fileOrFolderObject === null) {
                 continue;
             }
+            // Deny access to files outside of regular storages (fallback storage)
+            // to prevent local file inclusion / disclosure of arbitrary files
+            if ($fileOrFolderObject->getStorage()->isFallbackStorage()) {
+                continue;
+            }
             $baseIdentifier = dirname($fileOrFolderObject->getIdentifier());
             if ($fileOrFolderObject instanceof Folder) {
                 // handle file / folder structure
