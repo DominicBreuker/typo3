@@ -625,13 +625,14 @@ abstract class ActionController implements ControllerInterface
             );
             $arguments = [];
             if (is_string($referringRequestArguments['arguments'] ?? null)) {
-                $arguments = unserialize(
+                $arguments = json_decode(
                     base64_decode($this->hashService->validateAndStripHmac(
                         $referringRequestArguments['arguments'],
                         HashScope::ReferringArguments->prefix(),
                         HashAlgo::SHA3_256
-                    ))
-                );
+                    )),
+                    true
+                ) ?? [];
             }
             $replacedArguments = array_replace_recursive($arguments, $referrerArray);
             $nonExtbaseBaseArguments = [];

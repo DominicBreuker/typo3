@@ -49,7 +49,7 @@ final class FormViewHelper extends FluidFormViewHelper
         $markup = $this->createHiddenInputElement(
             $prefix . '[__state]',
             $this->hashService->appendHmac(
-                base64_encode(serialize($formRuntime->getFormState())),
+                base64_encode(json_encode($formRuntime->getFormState()->toArray())),
                 HashScope::FormState->prefix(),
                 HashAlgo::SHA3_256
             )

@@ -101,7 +101,7 @@ final class BlogPostEditingControllerTest extends FunctionalTestCase
                     '@extension' => 'BlogExample',
                     '@controller' => 'BlogPostEditing',
                     '@action' => 'edit',
-                    'arguments' => 'YTozOntzOjY6ImFjdGlvbiI7czo0OiJlZGl0IjtzOjQ6ImJsb2ciO3M6MToiMSI7czoxMDoiY29udHJvbGxlciI7czoxNToiQmxvZ1Bvc3RFZGl0aW5nIjt9752ab689b2d660a727f9a5171abf7fb78da3c1224514b8d9441956c39197ac68',
+                    'arguments' => 'eyJhY3Rpb24iOiJlZGl0IiwiYmxvZyI6IjEiLCJjb250cm9sbGVyIjoiQmxvZ1Bvc3RFZGl0aW5nIn0=c5a19173acb57b13294c860deaf65b4d5062fde355f3f835bd9a8ec873a254fe',
                     '@request' => '{"@extension":"BlogExample","@controller":"BlogPostEditing","@action":"edit"}501c75e4c5bdd3c610586f4acd8d2c829038591a2e67b3454d744d8a1fbe02f5',
                 ],
                 '__trustedProperties' => '{"blog":{"title":1,"categories":[1,1,1,1],"__identity":1},"submit":1}9e8b66dfa5641715e8d0a9e0596300de351ac23da8f8c11fe38700de2c1b0a80',
@@ -295,7 +295,7 @@ final class BlogPostEditingControllerTest extends FunctionalTestCase
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@extension]" value="BlogExample"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@controller]" value="BlogPostEditing"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@action]" value="edit"', $content);
-        self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][arguments]" value="YTozOntzOjY6ImFjdGlvbiI7czo0OiJlZGl0IjtzOjQ6ImJsb2ciO3M6MToiMSI7czoxMDoiY29udHJvbGxlciI7czoxNToiQmxvZ1Bvc3RFZGl0aW5nIjt9752ab689b2d660a727f9a5171abf7fb78da3c1224514b8d9441956c39197ac68"', $content);
+        self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][arguments]" value="eyJhY3Rpb24iOiJlZGl0IiwiYmxvZyI6IjEiLCJjb250cm9sbGVyIjoiQmxvZ1Bvc3RFZGl0aW5nIn0=c5a19173acb57b13294c860deaf65b4d5062fde355f3f835bd9a8ec873a254fe"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@request]" value="{&quot;@extension&quot;:&quot;BlogExample&quot;,&quot;@controller&quot;:&quot;BlogPostEditing&quot;,&quot;@action&quot;:&quot;edit&quot;}501c75e4c5bdd3c610586f4acd8d2c829038591a2e67b3454d744d8a1fbe02f5"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__trustedProperties]" value="{&quot;blog&quot;:{&quot;title&quot;:1,&quot;categories&quot;:[1,1,1,1],&quot;__identity&quot;:1},&quot;submit&quot;:1}9e8b66dfa5641715e8d0a9e0596300de351ac23da8f8c11fe38700de2c1b0a80"', $content);
 
@@ -359,7 +359,7 @@ final class BlogPostEditingControllerTest extends FunctionalTestCase
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@extension]" value="BlogExample"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@controller]" value="BlogPostEditing"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@action]" value="edit"', $content);
-        self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][arguments]" value="YTozOntzOjY6ImFjdGlvbiI7czo0OiJlZGl0IjtzOjQ6ImJsb2ciO3M6MToiMSI7czoxMDoiY29udHJvbGxlciI7czoxNToiQmxvZ1Bvc3RFZGl0aW5nIjt9752ab689b2d660a727f9a5171abf7fb78da3c1224514b8d9441956c39197ac68"', $content);
+        self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][arguments]" value="eyJhY3Rpb24iOiJlZGl0IiwiYmxvZyI6IjEiLCJjb250cm9sbGVyIjoiQmxvZ1Bvc3RFZGl0aW5nIn0=c5a19173acb57b13294c860deaf65b4d5062fde355f3f835bd9a8ec873a254fe"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__referrer][@request]" value="{&quot;@extension&quot;:&quot;BlogExample&quot;,&quot;@controller&quot;:&quot;BlogPostEditing&quot;,&quot;@action&quot;:&quot;edit&quot;}501c75e4c5bdd3c610586f4acd8d2c829038591a2e67b3454d744d8a1fbe02f5"', $content);
         self::assertStringContainsString('<input type="hidden" name="tx_blogexample_blogpostediting[__trustedProperties]" value="{&quot;blog&quot;:{&quot;title&quot;:1,&quot;categories&quot;:[1,1,1,1],&quot;__identity&quot;:1},&quot;submit&quot;:1}9e8b66dfa5641715e8d0a9e0596300de351ac23da8f8c11fe38700de2c1b0a80"', $content);
 
