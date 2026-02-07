@@ -247,7 +247,11 @@ class FormRuntime implements RootRenderableInterface, \ArrayAccess
             } catch (InvalidHashStringException $e) {
                 throw new BadRequestException('The HMAC of the form state could not be validated.', 1581862823);
             }
-            $this->formState = FormState::fromArray(json_decode(base64_decode($serializedFormState), true));
+            $decodedFormState = json_decode(base64_decode($serializedFormState), true);
+            if (!is_array($decodedFormState)) {
+                throw new BadRequestException('The form state could not be decoded.', 1581862824);
+            }
+            $this->formState = FormState::fromArray($decodedFormState);
         }
     }
 

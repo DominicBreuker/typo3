@@ -632,7 +632,7 @@ abstract class ActionController implements ControllerInterface
                         HashAlgo::SHA3_256
                     )),
                     true
-                );
+                ) ?? [];
             }
             $replacedArguments = array_replace_recursive($arguments, $referrerArray);
             $nonExtbaseBaseArguments = [];
