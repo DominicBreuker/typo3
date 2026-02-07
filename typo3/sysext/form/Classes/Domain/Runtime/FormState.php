@@ -99,4 +99,23 @@ class FormState
             return null;
         }
     }
+
+    /**
+     * @return array{lastDisplayedPageIndex: int, formValues: array}
+     */
+    public function toArray(): array
+    {
+        return [
+            'lastDisplayedPageIndex' => $this->lastDisplayedPageIndex,
+            'formValues' => $this->formValues,
+        ];
+    }
+
+    public static function fromArray(array $data): self
+    {
+        $state = new self();
+        $state->lastDisplayedPageIndex = (int)($data['lastDisplayedPageIndex'] ?? self::NOPAGE);
+        $state->formValues = (array)($data['formValues'] ?? []);
+        return $state;
+    }
 }

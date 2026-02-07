@@ -258,7 +258,7 @@ class FormViewHelper extends AbstractFormViewHelper
         $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[@extension]')) . '" value="' . htmlspecialchars($extensionName) . '" ' . $endingSlash . '>' . LF;
         $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[@controller]')) . '" value="' . htmlspecialchars($controllerName) . '" ' . $endingSlash . '>' . LF;
         $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[@action]')) . '" value="' . htmlspecialchars($actionName) . '" ' . $endingSlash . '>' . LF;
-        $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[arguments]')) . '" value="' . htmlspecialchars($this->hashService->appendHmac(base64_encode(serialize($request->getArguments())), HashScope::ReferringArguments->prefix(), HashAlgo::SHA3_256)) . '" ' . $endingSlash . '>' . LF;
+        $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[arguments]')) . '" value="' . htmlspecialchars($this->hashService->appendHmac(base64_encode(json_encode($request->getArguments())), HashScope::ReferringArguments->prefix(), HashAlgo::SHA3_256)) . '" ' . $endingSlash . '>' . LF;
         $result .= '<input type="hidden" name="' . htmlspecialchars($this->prefixFieldName('__referrer[@request]')) . '" value="' . htmlspecialchars($this->hashService->appendHmac(json_encode($actionRequest), HashScope::ReferringRequest->prefix(), HashAlgo::SHA3_256)) . '" ' . $endingSlash . '>' . LF;
 
         return $result;
