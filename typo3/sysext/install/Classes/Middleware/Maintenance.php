@@ -25,7 +25,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Configuration\ConfigurationManager;
 use TYPO3\CMS\Core\Configuration\Features;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Http\JsonResponse;
@@ -69,7 +68,6 @@ class Maintenance implements MiddlewareInterface
     public function __construct(
         protected readonly FailsafePackageManager $packageManager,
         protected readonly ConfigurationManager $configurationManager,
-        protected readonly PasswordHashFactory $passwordHashFactory,
         protected readonly ContainerInterface $container,
         protected readonly FormProtectionFactory $formProtectionFactory,
         protected readonly SessionService $sessionService
@@ -177,12 +175,10 @@ class Maintenance implements MiddlewareInterface
                         new FlashMessage('Please enter the install tool password', '', ContextualFeedbackSeverity::ERROR)
                     );
                 } else {
-                    $hashInstance = $this->passwordHashFactory->getDefaultHashInstance('BE');
-                    $hashedPassword = $hashInstance->getHashedPassword($password);
                     $messageQueue = new FlashMessageQueue('install');
                     $messageQueue->enqueue(
                         new FlashMessage(
-                            'Given password does not match the install tool login password. Calculated hash: ' . $hashedPassword,
+                            'Given password does not match the install tool login password.',
                             '',
                             ContextualFeedbackSeverity::ERROR
                         )
