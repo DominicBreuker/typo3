@@ -132,7 +132,7 @@ final class AuthenticationServiceTest extends UnitTestCase
     }
 
     #[Test]
-    public function authUserThrowsExceptionIfPasswordInDbDoesNotResolveToAValidHash(): void
+    public function authUserReturns0IfPasswordInDbDoesNotResolveToAValidHash(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'] = '12345';
         $sessionId = 'f20bd8643811f5a2792605a689b619bc02caa7dc';
@@ -156,7 +156,7 @@ final class AuthenticationServiceTest extends UnitTestCase
         $dbUser = [
             'password' => 'aPlainTextPassword',
         ];
-        self::assertEquals(100, $subject->authUser($dbUser));
+        self::assertSame(0, $subject->authUser($dbUser));
     }
 
     #[Test]
