@@ -79,3 +79,4 @@ Documentation-GENERATED-temp/
 # Ignore AI tool-generated files
 /CLAUDE.local.md
 /.claude/settings.local.json
+composer.lock
