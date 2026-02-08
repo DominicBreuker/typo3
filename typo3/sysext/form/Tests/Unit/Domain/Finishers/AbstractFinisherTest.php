@@ -84,6 +84,29 @@ final class AbstractFinisherTest extends UnitTestCase
     }
 
     #[Test]
+    public function parseOptionDoesNotEvaluateRuntimeReferencesFromUserSubmittedValues(): void
+    {
+        $finisherContextMock = $this->createMock(FinisherContext::class);
+        $formRuntimeMock = $this->createMock(FormRuntime::class);
+        // Simulate a user submitting '{__currentTimestamp}' as form value for 'comment'
+        $formRuntimeMock->method('offsetExists')->with(self::anything())->willReturn(true);
+        $formRuntimeMock->method('offsetGet')->with('comment')->willReturn('{__currentTimestamp}');
+        $finisherContextMock->method('getFormRuntime')->willReturn($formRuntimeMock);
+        $finisherContextMock->method('getFinisherVariableProvider')->willReturn(new FinisherVariableProvider());
+
+        $subject = new AbstractFinisherFixture();
+        $subject->options = [
+            'subject' => 'Message from {comment}',
+        ];
+        $subject->finisherContext = $finisherContextMock;
+
+        // The user-submitted value '{__currentTimestamp}' must NOT be evaluated as a runtime reference.
+        // It should remain as the literal string '{__currentTimestamp}' in the output.
+        $result = $subject->parseOption('subject');
+        self::assertSame('Message from {__currentTimestamp}', $result);
+    }
+
+    #[Test]
     public function substituteRuntimeReferencesReturnsArrayIfInputIsArray(): void
     {
         $formRuntimeMock = $this->createMock(FormRuntime::class);
