@@ -297,4 +297,21 @@ final class AbstractFinisherTest extends UnitTestCase
         $subject = new AbstractFinisherFixture();
         $subject->substituteRuntimeReferences($input, $formRuntimeMock);
     }
+
+    #[Test]
+    public function parseOptionDoesNotEvaluateRuntimeReferencesInjectedViaFormFieldValues(): void
+    {
+        $finisherContextMock = $this->createMock(FinisherContext::class);
+        $formRuntimeMock = $this->createMock(FormRuntime::class);
+        $formRuntimeMock->method('offsetExists')->with('comment')->willReturn(true);
+        $formRuntimeMock->method('offsetGet')->with('comment')->willReturn('{__currentTimestamp}');
+        $finisherContextMock->method('getFormRuntime')->willReturn($formRuntimeMock);
+
+        $subject = new AbstractFinisherFixture();
+        $subject->options = [
+            'subject' => 'Thank you {comment}',
+        ];
+        $subject->finisherContext = $finisherContextMock;
+        self::assertSame('Thank you {__currentTimestamp}', $subject->parseOption('subject'));
+    }
 }

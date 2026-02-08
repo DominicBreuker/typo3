@@ -221,8 +221,6 @@ abstract class AbstractFinisher implements FinisherInterface, LoggerAwareInterfa
                 $optionValue,
                 $translationOptions
             );
-
-            $optionValue = $this->substituteRuntimeReferences($optionValue, $formRuntime);
         }
 
         if (empty($optionValue)) {
